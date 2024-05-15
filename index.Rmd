@@ -1,0 +1,115 @@
+---
+title: "Liverpool Football Club Best Statistical Eleven"
+description: |
+  The in-depth rundown of Liverpool Football Club players and corresponding statistics.
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+library(tidyverse)
+library(ggthemes)
+
+goal_keeping <- read.csv("goal_keeping.csv", header = TRUE)
+view(goal_keeping)
+
+defensive_action <- read.csv("defensive_action.csv", header = TRUE)
+view(defensive_action)
+
+possession <- read.csv("possession.csv", header = TRUE)
+view(possession)
+
+Standard_stats <- read.csv("Standard_stats.csv", header = TRUE)
+view(Standard_stats)
+```
+
+##  Goalkeeper
+The first step to creating our starting eleven is the goalkeeper and arguably our most important position.  
+
+```{r Goalkeeper wrangling and graph}
+
+  goal_keeping %>%
+select(Player, GA90)%>%
+  group_by(Player)%>%
+  summarize(Player, GA90)%>%
+ggplot(mapping = aes(y = reorder(Player, +GA90), x = GA90, fill = Player))+
+geom_col(position = "dodge")+
+  theme_classic()+
+  labs(title = "Alisson is the Best Liverpool FC Goalkeeper", 
+  subtitle = "Alisson lets in less goals per game on average", 
+  y = "Player", 
+  x = "Goals Scored Against Liverpool FC Per 90 Minutes", fill = "Player", caption = "Source: https://fbref.com")
+```
+###  Goalkeeper: Alisson
+
+##  Defenders
+Liverpool FC will need four defensive minded players to protect the newly selected goalkeeper Alisson.  
+
+```{r Defenders wrangling and graph}
+defensive_action %>%
+select(Player, Def_3rd)%>%
+  group_by(Player)%>%
+  summarize(Player, Def_3rd)%>%
+ggplot(mapping = aes(y = reorder(Player, +Def_3rd), x = Def_3rd, fill = Player))+
+geom_col(position = "dodge")+
+  theme_classic()+
+  labs(title = "
+Liverpool FC Best Back Four Based on Tackles", 
+       subtitle = "The new back four consists of the top tacklers in the defensive third", 
+       x = "Tackles in Defensive Third", y = "Players", 
+       caption = "Source: https://fbref.com")
+```
+###  Defenders: Trent Alexander-Arnold, Virgil Van Dijk, Jordan Henderson, and Fabinho
+
+
+##  Midfielders
+The heart of all teams is the midfield and their ability to dribble the ball, Liverpool FC will need three of them.
+
+```{r Midfielders wrangling and graph}
+possession%>%
+select(Player, Succ_)%>%
+  group_by(Player)%>%
+  summarize(Player, Succ_)%>%
+ggplot(mapping = aes(y = reorder(Player, -Succ_), x = Succ_, fill = Player))+
+geom_col(position = "dodge")+
+  theme_classic()+
+  labs(title = "The Best Possible Middle Three For Liverpool", 
+       subtitle = "The new back four consists of the best dribblers in the team", 
+       x = "Percentage of Successful Take-ons", y = "Players", 
+       caption = "Source: https://fbref.com")
+```
+###  Midfielders: Curtis Jones, Joel Matip, and Naby Keita
+
+##  Attackers
+The firepower of Liverpool FC and the goalscorers of any team. The attackers will consist of the three top scoring players in the team. 
+
+```{r Attackerrs wrangling and graph}
+Standard_stats%>%
+select(Player, Gs)%>%
+  group_by(Player)%>%
+  summarize(Player, Gs)%>%
+ggplot(mapping = aes(y = reorder(Player, +Gs), x = Gs, fill = Player))+
+geom_col(position = "dodge")+
+  theme_classic()+
+  labs(title = "The Highest Scoring Liverpool FC Front Three", 
+       subtitle = "The front three will consist of the top scorers throughout the season", 
+       x = "Goals Scored or Allowed", y = "Players", 
+       caption = "Source: https://fbref.com")
+```
+
+###  Attackers: Mohamed Salah, Roberto Firmino, and Sadio Mane
+
+##  Final Eleven
+
+Alisson,
+Fabinho,   Virgil Van Dijk,   Jordan Henderson,    Trent Alexander-Arnold,
+Curtis Jones,    Joel Matip,    Naby Keita,
+Mohamed Salah,   Roberto Firmino,   Sadio Mane
+
+
+              
+
+
+

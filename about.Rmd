@@ -1,0 +1,30 @@
+---
+title: "About this site"
+description: |
+  Some additional details about the website and inspiration behind it
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## About Me
+My name is **Oliver Altindag**. I am a student at Newton North HS who is a Liverpool FC super fan. You'll Never Walk Alone!
+
+
+## About the Project
+My project, *Liverpool Football Clubs Best Statistical 11*, explores the statistics of Liverpool Football Club’s most successful domestic season. 
+
+### Goals
+* To establish an understanding of Liverpool FC's best players most important stats
+
+* To figure out how Liverpool FC can improve  
+  + The fitness of the squad limits these decisions
+
+* To see how accurately statistics represent player performances  
+  
+"You'll Never Walk Alone"  
+~ Gerry & the Pacemakers
+
+[You'll Never Walk Alone](https://lnk.to/YNWAstr)
+
